@@ -25,7 +25,7 @@ def get_weather():
   return weather['weather'],str(math.floor(weather['low'])),str(math.floor(weather['high']))
 
 def get_today():
-  return datetime.strftime(today, "%Y年%m月%d日 星期%w")
+  return datetime.strftime(today, "%Y年%m月%d日")
 
 def get_week():
    week_list = ["星期一","星期二","星期三","星期四","星期五","星期六","星期日"]
@@ -64,6 +64,6 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 wea, low,high = get_weather()
-data = {"weather":{"value":wea,"color":get_random_color1()},"high":{"value":high+"℃~"+low+"℃","color":get_random_color2()},"today":{"value":get_today()+" "+get_week(),"color":get_random_color4()},"love_days":{"value":get_count(),"color":get_random_color5()},"words":{"value":get_words(), "color":get_random_color()}}
+data = {"weather":{"value":wea,"color":get_random_color1()},"temperature":{"value":high+"℃~"+low+"℃","color":get_random_color2()},"today":{"value":get_today()+" "+get_week(),"color":get_random_color4()},"love_days":{"value":get_count(),"color":get_random_color5()},"words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)
